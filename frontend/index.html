@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Nuevo estudiante</h2>
+        <form id="student-form" action="">
+            <input type="hidden" id="student-id" name="">
+            <div>
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required minlength="2">
+            </div>
+            <div>
+                <label for="age">Edad</label>
+                <input type="number" id="age" name="age" required min="1">
+            </div>
+            <div>
+                <label for="grade">Nota</label>
+                <input type="number" id="grade" name="grade" required min="1" max="5">
+            </div>
+            <div>
+                <button type="submit" id="submit-btn">Guardar</button>
+                <button type="button" id="cancel-btn">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <h2>Lista de Estudiantes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Nota</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="student-list">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
