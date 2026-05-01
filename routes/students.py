@@ -19,9 +19,9 @@ def create_student(student: Student, db: Session=Depends(get_db)):
     return StudentController.create(student, db)
 
 @router.put("/{student_id}", response_model=StudentReponse)
-def update_student(student_id: int, student: Student):
-    ...
+def update_student(student_id: int, student: Student, db: Session = Depends(get_db)):
+    return StudentController.update(student_id, student, db)
 
-@router.delete("/{studend_id}")
-def delete_student(studend_id: int):
-    ...
+@router.delete("/{student_id}")
+def delete_student(student_id: int, db: Session = Depends(get_db)):
+    return StudentController.delete(student_id, db)
