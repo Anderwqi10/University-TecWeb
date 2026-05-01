@@ -24,6 +24,37 @@ class StudentController:
         db.commit()
         db.refresh(new_student)
         return new_student
+    
+      
+      
+    
+    @staticmethod
+    def update(student_id: int, student: Student, db: Session):
+        student_db = db.query(StudentDB).filter(StudentDB.id == student_id).first()
+
+        if not student_db:
+            raise HTTPException(status_code=404, detail="Student not found")
+
+        student_db.name = student.name
+        student_db.age = student.age
+        student_db.grade = student.grade
+
+        db.commit()
+        db.refresh(student_db)
+
+        return student_db
+
+    @staticmethod
+    def delete(student_id: int, db: Session):
+        student_db = db.query(StudentDB).filter(StudentDB.id == student_id).first()
+
+        if not student_db:
+            raise HTTPException(status_code=404, detail="Student not found")
+
+        db.delete(student_db)
+        db.commit()
+
+        return student_db
 
     @staticmethod
     def update(student_id: int, student: Student, db: Session):
