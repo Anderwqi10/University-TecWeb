@@ -39,3 +39,15 @@ class StudentController:
         db.refresh(existing_student)
 
         return existing_student
+
+    @staticmethod
+    def delete(student_id: int, db: Session):
+        student = db.query(StudentDB).filter(StudentDB.id == student_id).first()
+
+        if not student:
+            raise HTTPException(status_code=404, detail="Estudiante no encontrado")
+
+        db.delete(student)
+        db.commit()
+
+        return {"message": "Estudiante eliminado correctamente"}
