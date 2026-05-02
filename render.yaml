@@ -13,3 +13,18 @@ services:
         value: "3.12.8"
       - key: JWT_SECRET
         generateValue: true
+      # Correo por HTTPS. Principal: SendGrid; respaldo: Resend, Brevo.
+      - key: SENDGRID_API_KEY
+        sync: false
+      - key: SENDGRID_FROM_EMAIL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM_EMAIL
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_FROM_EMAIL
+        sync: false
+      - key: MAIL_OTP_LOG_ONLY
+        sync: false
