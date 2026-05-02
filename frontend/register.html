@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/style.css?v=4">
+    <title>TecWeb - Registro</title>
+</head>
+<body>
+    <!-- Pantalla exclusiva para crear cuenta nueva. -->
+    <div class="page auth-page">
+        <div class="brand">
+            <h1>TecWeb • Registro</h1>
+        </div>
+        <section>
+            <div class="card">
+                <h2>Crear cuenta</h2>
+                <div class="hint">Te enviaremos un código de 6 dígitos al correo para verificar la cuenta (revisa spam).</div>
+                <form id="register-form" action="">
+                    <div class="row">
+                        <label for="register-email">Correo</label>
+                        <input type="email" id="register-email" autocomplete="email" required>
+                    </div>
+                    <div class="row">
+                        <label for="register-password">Contraseña</label>
+                        <input type="password" id="register-password" autocomplete="new-password" required minlength="6">
+                    </div>
+                    <div class="actions">
+                        <button class="btn-primary" type="submit">Crear cuenta</button>
+                        <a class="btn-link" href="/login">Ya tengo cuenta</a>
+                    </div>
+                    <p id="register-error" class="error" style="display: none;"></p>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/frontend/register.js?v=3"></script>
+</body>
+</html>

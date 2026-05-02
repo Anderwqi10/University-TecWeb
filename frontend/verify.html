@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/style.css?v=4">
+    <title>TecWeb - Verificar correo</title>
+</head>
+<body>
+    <div class="page auth-page">
+        <div class="brand">
+            <h1>TecWeb • Verificar correo</h1>
+        </div>
+        <section>
+            <div class="card">
+                <h2>Verificar cuenta</h2>
+                <div class="hint">Abre el correo que usaste al registrarte y copia el código de 6 dígitos (válido 10 minutos). Si no configuraste SMTP, el código aparece en la terminal donde corre el servidor.</div>
+                <form id="verify-form" action="" novalidate>
+                    <div class="row">
+                        <label for="verify-email">Correo</label>
+                        <input type="email" id="verify-email" autocomplete="email" required>
+                    </div>
+                    <div class="row">
+                        <label for="verify-code">Código OTP</label>
+                        <input type="text" id="verify-code" inputmode="numeric" autocomplete="one-time-code" required minlength="6" maxlength="10" pattern="[0-9 ]*" title="6 dígitos del correo">
+                    </div>
+                    <div class="actions">
+                        <button class="btn-primary" type="submit">Verificar</button>
+                        <a class="btn-link" id="resend-link" href="/register">Solicitar código otra vez (registro)</a>
+                    </div>
+                    <p id="verify-error" class="error" style="display: none;"></p>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/frontend/verify.js?v=6"></script>
+</body>
+</html>

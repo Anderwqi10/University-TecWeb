@@ -1,52 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/frontend/style.css?v=3">
+    <title>TecWeb - Estudiantes</title>
 </head>
-
 <body>
-    <div class="container">
-        <h2>Nuevo estudiante</h2>
-        <form id="student-form" action="">
-            <input type="hidden" id="student-id" name="">
-            <div>
-                <label for="name">Nombre</label>
-                <input type="text" id="name" name="name" required minlength="2">
-            </div>
-            <div>
-                <label for="age">Edad</label>
-                <input type="number" id="age" name="age" required min="1">
-            </div>
-            <div>
-                <label for="grade">Nota</label>
-                <input type="number" id="grade" name="grade" required min="1" max="5">
-            </div>
-            <div>
-                <button type="submit" id="submit-btn">Guardar</button>
-                <button type="button">Cancelar</button>
-            </div>
-        </form>
-    </div>
-    <div>
-        <h2>Lista de Estudiantes</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Nota</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="student-list">
+    <!-- Dashboard principal (solo para usuarios autenticados). -->
+    <div class="page">
+        <div class="brand">
+            <h1>TecWeb • Formulario De Estudiantes</h1>
+        </div>
 
-            </tbody>
-        </table>
+        <section id="app-view">
+            <div class="card">
+                <div class="topbar">
+                    <div class="title">
+                        <h2>Estudiantes</h2>
+                        <small>Gestiona la lista de estudiantes</small>
+                    </div>
+                    <button class="btn-danger" type="button" id="logout-btn">Salir</button>
+                </div>
+
+                <!-- Formulario CRUD y tabla en dos columnas. -->
+                <div class="grid-2">
+                    <div>
+                        <h3>Nuevo estudiante</h3>
+                        <form id="student-form" action="">
+                            <input type="hidden" id="student-id" name="">
+                            <div class="row">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" name="name" required minlength="2">
+                            </div>
+                            <div class="row">
+                                <label for="age">Edad</label>
+                                <input type="number" id="age" name="age" required min="1">
+                            </div>
+                            <div class="row">
+                                <label for="grade">Nota</label>
+                                <input type="number" id="grade" name="grade" required min="1" max="5">
+                            </div>
+                            <div class="actions">
+                                <button class="btn-primary" type="submit" id="submit-btn">Guardar</button>
+                                <button type="button" id="cancel-btn">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h3>Lista de Estudiantes</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Edad</th>
+                                    <th>Nota</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <script src="./index.js"></script>
+    <script src="/frontend/index.js?v=8"></script>
 </body>
-
 </html>

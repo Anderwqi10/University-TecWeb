@@ -1,0 +1,15 @@
+# Blueprint opcional para Render: New > Blueprint > conectar este repo.
+# Plan free: el disco del contenedor es efímero; SQLite se pierde al redesplegar salvo que añadas disco persistente (planes de pago) y DATABASE_URL.
+
+services:
+  - type: web
+    name: university-tecweb
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: JWT_SECRET
+        generateValue: true
