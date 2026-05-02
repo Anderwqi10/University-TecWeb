@@ -1,5 +1,3 @@
-"""Autenticación y verificación de cuenta por código OTP enviado al correo."""
-
 import hashlib
 import secrets
 import time
@@ -40,7 +38,14 @@ class AuthController:
             existing.verification_code_expires_at = expires_at
             db.commit()
             db.refresh(existing)
-            send_verification_email(to_email=str(user.email), code=code)
+
+            # 🔥 MODO DEV
+            try:
+                send_verification_email(to_email=str(user.email), code=code)
+            except Exception as e:
+                print("⚠️ Error enviando correo:", e)
+                print(f"🔥 OTP PARA {user.email}: {code}")
+
             return existing
 
         new_user = UserDB(
@@ -53,7 +58,14 @@ class AuthController:
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
-        send_verification_email(to_email=str(user.email), code=code)
+
+        # 🔥 MODO DEV
+        try:
+            send_verification_email(to_email=str(user.email), code=code)
+        except Exception as e:
+            print("⚠️ Error enviando correo:", e)
+            print(f"🔥 OTP PARA {user.email}: {code}")
+
         return new_user
 
     @staticmethod

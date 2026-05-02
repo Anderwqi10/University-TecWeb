@@ -29,18 +29,23 @@
                         <h3>Nuevo estudiante</h3>
                         <form id="student-form" action="">
                             <input type="hidden" id="student-id" name="">
+                            
                             <div class="row">
                                 <label for="name">Nombre</label>
                                 <input type="text" id="name" name="name" required minlength="2">
                             </div>
+
                             <div class="row">
                                 <label for="age">Edad</label>
                                 <input type="number" id="age" name="age" required min="1">
                             </div>
+
                             <div class="row">
                                 <label for="grade">Nota</label>
-                                <input type="number" id="grade" name="grade" required min="1" max="5">
+                                <!-- 🔥 CORREGIDO AQUÍ -->
+                                <input type="number" id="grade" name="grade" required min="0" max="5" step="any">
                             </div>
+
                             <div class="actions">
                                 <button class="btn-primary" type="submit" id="submit-btn">Guardar</button>
                                 <button type="button" id="cancel-btn">Cancelar</button>
@@ -67,6 +72,7 @@
             </div>
         </section>
     </div>
+
     <script src="/frontend/index.js?v=8"></script>
 </body>
 </html>
