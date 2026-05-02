@@ -6,6 +6,8 @@ Este módulo centraliza:
 """
 
 import os
+import secrets
+import sys
 from datetime import datetime, timedelta, timezone
 
 from jose import JWTError, jwt
@@ -14,11 +16,20 @@ from passlib.context import CryptContext
 # Usamos pbkdf2_sha256 para evitar problemas de compatibilidad de bcrypt en algunos entornos.
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
-# Producción (Render, etc.): define JWT_SECRET en variables de entorno.
+
+def _running_on_render() -> bool:
+    return (os.getenv("RENDER") or "").lower() in ("true", "1", "yes")
+
+
+# Producción: define JWT_SECRET (o SECRET_KEY) en el panel de Render → Environment.
+# Si falta en Render, generamos uno efímero para que el deploy no falle; los tokens se invalidan al reiniciar.
 _secret = os.getenv("JWT_SECRET") or os.getenv("SECRET_KEY")
-if os.getenv("RENDER") == "true" and not _secret:
-    raise RuntimeError(
-        "Defina JWT_SECRET en el panel de Render (Environment) antes de desplegar."
+if _running_on_render() and not _secret:
+    _secret = secrets.token_urlsafe(64)
+    print(
+        "[WARN] JWT_SECRET no definido; usando secreto efímero. "
+        "Añade JWT_SECRET en Environment para tokens estables entre reinicios.",
+        file=sys.stderr,
     )
 SECRET_KEY = _secret or "CHANGE_ME_IN_PROD"
 ALGORITHM = "HS256"
