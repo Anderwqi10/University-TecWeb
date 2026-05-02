@@ -46,6 +46,7 @@ def update_student(
     # Actualiza un estudiante existente del usuario.
     return StudentController.update(student_id, student, current_user.id, db)
 
+
 @router.delete("/{student_id}")
 def delete_student(
     student_id: int,

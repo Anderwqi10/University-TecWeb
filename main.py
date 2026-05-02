@@ -11,6 +11,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from core.database import Base, engine, ensure_schema
@@ -30,12 +31,20 @@ Base.metadata.create_all(bind=engine)
 ensure_schema()
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.mount("/frontend", StaticFiles(directory=BASE_DIR / "frontend"), name="frontend")
 
+
 @app.get("/")
 def serve_index():
-    # Vista principal (dashboard de estudiantestte ).
+    # Vista principal (dashboard de estudiantes).
     return FileResponse(BASE_DIR / "frontend" / "index.html")
 
 
@@ -55,6 +64,7 @@ def serve_register():
 def serve_verify():
     # Vista de verificación con código enviado al correo.
     return FileResponse(BASE_DIR / "frontend" / "verify.html")
+
 
 app.include_router(students.router)
 app.include_router(auth.router)

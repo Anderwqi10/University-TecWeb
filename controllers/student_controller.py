@@ -5,12 +5,14 @@ from sqlalchemy.orm import Session
 from models.student_model import Student
 from models.db_model import Student as StudentDB
 
+
 class StudentController:
+
     @staticmethod
     def get_all(user_id: int, db: Session):
         # Lista solo los estudiantes del usuario actual.
         return db.query(StudentDB).filter(StudentDB.user_id == user_id).all()
-    
+
     @staticmethod
     def get_by_id(student_id: int, user_id: int, db: Session):
         # Busca un estudiante por id, restringido por propietario.
@@ -22,7 +24,7 @@ class StudentController:
         if not student:
             raise HTTPException(status_code=404, detail="Estudiante no encontrado")
         return student
-    
+
     @staticmethod
     def create(student: Student, user_id: int, db: Session):
         # Crea estudiante y lo asocia al usuario autenticado.
@@ -49,7 +51,3 @@ class StudentController:
         db.delete(existing)
         db.commit()
         return {"deleted": True, "id": student_id}
-
-
-
-
